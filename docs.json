@@ -36,14 +36,6 @@
               "essentials/images",
               "essentials/reusable-snippets"
             ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
           }
         ]
       },
@@ -57,10 +49,10 @@
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "API Endpoints",
             "pages": [
-              "api-reference/endpoint/send-media",
-              "api-reference/endpoint/send-text"
+              "api-reference/endpoint/send-text",
+              "api-reference/endpoint/send-media"
             ]
           }
         ]

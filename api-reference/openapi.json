@@ -121,30 +121,30 @@
         "properties": {
           "number": {
             "type": "string",
-            "description": "WhatsApp number to send the message to."
+            "description": "WhatsApp number to send the message to"
           },
           "text": {
             "type": "string",
-            "description": "Text message content."
+            "description": "Text message content"
           },
           "delay": {
             "type": "integer",
-            "description": "Delay in milliseconds before sending the message."
+            "description": "Delay in milliseconds before sending the message"
           },
           "linkPreview": {
             "type": "boolean",
-            "description": "Whether to show link preview."
+            "description": "Whether to show link preview"
           },
           "mentionsEveryOne": {
             "type": "boolean",
-            "description": "Whether to mention everyone."
+            "description": "Whether to mention everyone"
           },
           "mentioned": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "List of mentioned JIDs."
+            "description": "List of mentioned JIDs"
           }
         },
         "required": ["number", "text"]
@@ -189,16 +189,16 @@
       "SendMediaRequest": {
         "type": "object",
         "properties": {
-          "number": { "type": "string", "description": "WhatsApp number to send the message to." },
+          "number": { "type": "string", "description": "WhatsApp number to send the message to" },
           "mediatype": { "type": "string", "description": "Type of media (image, video, document, audio)" },
-          "mimetype": { "type": "string", "description": "MIME type of the media." },
-          "caption": { "type": "string", "description": "Caption for the media (optional)." },
-          "media": { "type": "string", "description": "Base64-encoded media content or media URL." },
-          "fileName": { "type": "string", "description": "File name for the media (optional)." },
-          "delay": { "type": "integer", "description": "Delay in milliseconds before sending the message (optional)." },
-          "linkPreview": { "type": "boolean", "description": "Whether to show link preview (optional)." },
-          "mentionsEveryOne": { "type": "boolean", "description": "Whether to mention everyone (optional)." },
-          "mentioned": { "type": "array", "items": { "type": "string" }, "description": "List of mentioned JIDs (optional)." }
+          "mimetype": { "type": "string", "description": "MIME type of the media" },
+          "caption": { "type": "string", "description": "Caption for the media (optional)" },
+          "media": { "type": "string", "description": "Base64-encoded media content or media URL" },
+          "fileName": { "type": "string", "description": "File name for the media (optional)" },
+          "delay": { "type": "integer", "description": "Delay in milliseconds before sending the message (optional)" },
+          "linkPreview": { "type": "boolean", "description": "Whether to show link preview (optional)" },
+          "mentionsEveryOne": { "type": "boolean", "description": "Whether to mention everyone (optional)" },
+          "mentioned": { "type": "array", "items": { "type": "string" }, "description": "List of mentioned JIDs (optional)" }
         },
         "required": ["number", "mediatype", "mimetype", "media"]
       },
