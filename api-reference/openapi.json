@@ -10,7 +10,13 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://{server-url}",
+      "variables": {
+        "server-url": {
+          "default": "evo.wabotmaster-cloud.com",
+          "description": "The URL of API server"
+        }
+      }
     }
   ],
   "security": [
@@ -19,191 +25,219 @@
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/message/sendText/{instance}": {
       "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+        "summary": "Send Text",
+        "description": "Send text message to WhatsApp number",
         "parameters": [
           {
-            "name": "id",
+            "name": "instance",
             "in": "path",
-            "description": "ID of plant to delete",
+            "description": "Name of the instance",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
         "requestBody": {
-          "description": "Plant added to the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/SendTextRequest"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendTextResponse"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendMedia/{instance}": {
+      "post": {
+        "summary": "Send Media",
+        "description": "Send media message (image, video, document, audio) to WhatsApp number",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMediaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendMediaResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "SendTextRequest": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "number": {
+            "type": "string",
+            "description": "WhatsApp number to send the message to."
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "text": {
+            "type": "string",
+            "description": "Text message content."
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Delay in milliseconds before sending the message."
+          },
+          "linkPreview": {
+            "type": "boolean",
+            "description": "Whether to show link preview."
+          },
+          "mentionsEveryOne": {
+            "type": "boolean",
+            "description": "Whether to mention everyone."
+          },
+          "mentioned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of mentioned JIDs."
+          }
+        },
+        "required": ["number", "text"]
+      },
+      "QuotedMessage": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" }
+            }
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "SendTextResponse": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": { "type": "string" },
+              "fromMe": { "type": "boolean" },
+              "id": { "type": "string" }
+            }
           },
           "message": {
-            "type": "string"
-          }
+            "type": "object",
+            "properties": {
+              "extendedTextMessage": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string" }
+                }
+              }
+            }
+          },
+          "messageTimestamp": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      },
+      "SendMediaRequest": {
+        "type": "object",
+        "properties": {
+          "number": { "type": "string", "description": "WhatsApp number to send the message to." },
+          "mediatype": { "type": "string", "description": "Type of media (image, video, document, audio)" },
+          "mimetype": { "type": "string", "description": "MIME type of the media." },
+          "caption": { "type": "string", "description": "Caption for the media (optional)." },
+          "media": { "type": "string", "description": "Base64-encoded media content or media URL." },
+          "fileName": { "type": "string", "description": "File name for the media (optional)." },
+          "delay": { "type": "integer", "description": "Delay in milliseconds before sending the message (optional)." },
+          "linkPreview": { "type": "boolean", "description": "Whether to show link preview (optional)." },
+          "mentionsEveryOne": { "type": "boolean", "description": "Whether to mention everyone (optional)." },
+          "mentioned": { "type": "array", "items": { "type": "string" }, "description": "List of mentioned JIDs (optional)." }
+        },
+        "required": ["number", "mediatype", "mimetype", "media"]
+      },
+      "SendMediaResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": { "type": "string" },
+              "fromMe": { "type": "boolean" },
+              "id": { "type": "string" }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "imageMessage": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string" },
+                  "mimetype": { "type": "string" },
+                  "caption": { "type": "string" },
+                  "fileSha256": { "type": "string" },
+                  "fileLength": { "type": "string" },
+                  "height": { "type": "integer" },
+                  "width": { "type": "integer" },
+                  "mediaKey": { "type": "string" },
+                  "fileEncSha256": { "type": "string" },
+                  "directPath": { "type": "string" },
+                  "mediaKeyTimestamp": { "type": "string" },
+                  "jpegThumbnail": { "type": "string" },
+                  "contextInfo": { "type": "object" }
+                }
+              }
+            }
+          },
+          "messageTimestamp": { "type": "string" },
+          "status": { "type": "string" }
         }
       }
     },
@@ -211,6 +245,11 @@
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
+      },
+      "apikey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey"
       }
     }
   }
