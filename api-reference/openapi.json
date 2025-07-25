@@ -10,10 +10,10 @@
   },
   "servers": [
     {
-      "url": "https://{server-url}",
+      "url": "https://api.botifiy.com",
       "variables": {
         "server-url": {
-          "default": "evo.wabotmaster-cloud.com",
+          "default": "api.botifiy.com",
           "description": "The URL of API server"
         }
       }
