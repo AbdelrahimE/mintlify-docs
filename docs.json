@@ -11,17 +11,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Home",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Documentation",
         "groups": [
           {
