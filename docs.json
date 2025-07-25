@@ -44,7 +44,13 @@
             "group": "API Reference",
             "pages": [
               "api-reference/endpoint/send-text",
-              "api-reference/endpoint/send-media"
+              "api-reference/endpoint/send-media",
+              "api-reference/endpoint/send-whatsapp-audio",
+              "api-reference/endpoint/send-poll",
+              "api-reference/endpoint/send-contact",
+              "api-reference/endpoint/send-location",
+              "api-reference/endpoint/send-sticker",
+              "api-reference/endpoint/send-reaction"
             ]
           }
         ]

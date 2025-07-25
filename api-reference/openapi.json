@@ -251,6 +251,270 @@
         ]
       }
     },
+    "/message/sendWhatsAppAudio/{instance}": {
+      "post": {
+        "summary": "Send WhatsApp Audio",
+        "description": "Send WhatsApp audio message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "ID of the instance to connect",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendWhatsAppAudioRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendWhatsAppAudioResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendPoll/{instance}": {
+      "post": {
+        "summary": "Send Poll",
+        "description": "Send poll message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendPollRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendPollResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendContact/{instance}": {
+      "post": {
+        "summary": "Send Contact",
+        "description": "Send contact message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendContactRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendContactResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendLocation/{instance}": {
+      "post": {
+        "summary": "Send Location",
+        "description": "Send location message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendLocationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendLocationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendSticker/{instance}": {
+      "post": {
+        "summary": "Send Sticker",
+        "description": "Send sticker message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendStickerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendStickerResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/message/sendReaction/{instance}": {
+      "post": {
+        "summary": "Send Reaction",
+        "description": "Send reaction message",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendReactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendReactionResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
     "/message/sendText/{instance}": {
       "post": {
         "summary": "Send Text",
@@ -484,6 +748,650 @@
               "type": "string"
             },
             "description": "Events configured for the webhook"
+          }
+        }
+      },
+      "SendWhatsAppAudioRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Number to receive the message (with country code)"
+          },
+          "audio": {
+            "type": "string",
+            "description": "url or base64"
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Presence time in milliseconds before sending message"
+          },
+          "linkPreview": {
+            "type": "boolean",
+            "description": "Shows a preview of the target website if there's a link within the message"
+          },
+          "mentionsEveryOne": {
+            "type": "boolean",
+            "description": "Mentioned everyone when the message send"
+          },
+          "mentioned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Numbers to mention"
+          },
+          "quoted": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "message": {
+                "type": "object",
+                "properties": {
+                  "conversation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["number", "audio"]
+      },
+      "SendWhatsAppAudioResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "audioMessage": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "mimetype": {
+                    "type": "string"
+                  },
+                  "fileSha256": {
+                    "type": "string"
+                  },
+                  "fileLength": {
+                    "type": "string"
+                  },
+                  "seconds": {
+                    "type": "integer"
+                  },
+                  "ptt": {
+                    "type": "boolean"
+                  },
+                  "mediaKey": {
+                    "type": "string"
+                  },
+                  "fileEncSha256": {
+                    "type": "string"
+                  },
+                  "directPath": {
+                    "type": "string"
+                  },
+                  "mediaKeyTimestamp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "SendPollRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Number to receive the message (with country code)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Main text of the poll"
+          },
+          "selectableCount": {
+            "type": "integer",
+            "description": "Ex: 1"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Values for question"
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Presence time in milliseconds before sending message"
+          },
+          "linkPreview": {
+            "type": "boolean",
+            "description": "Shows a preview of the target website if there's a link within the message"
+          },
+          "mentionsEveryOne": {
+            "type": "boolean",
+            "description": "Mentioned everyone when the message send"
+          },
+          "mentioned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Numbers to mention"
+          },
+          "quoted": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "message": {
+                "type": "object",
+                "properties": {
+                  "conversation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["number", "name", "selectableCount", "values"]
+      },
+      "SendPollResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "messageContextInfo": {
+                "type": "object",
+                "properties": {
+                  "messageSecret": {
+                    "type": "string"
+                  }
+                }
+              },
+              "pollCreationMessage": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "optionName": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "selectableOptionsCount": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "SendContactRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Number to receive the message (with country code)"
+          },
+          "contact": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fullName": {
+                  "type": "string"
+                },
+                "wuid": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Contact information to send"
+          }
+        },
+        "required": ["number", "contact"]
+      },
+      "SendContactResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "contactMessage": {
+                "type": "object",
+                "properties": {
+                  "displayName": {
+                    "type": "string"
+                  },
+                  "vcard": {
+                    "type": "string"
+                  },
+                  "contextInfo": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "SendLocationRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Number to receive the message (with country code)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name the city"
+          },
+          "address": {
+            "type": "string",
+            "description": "Location address"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude location"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude location"
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Presence time in milliseconds before sending message"
+          },
+          "linkPreview": {
+            "type": "boolean",
+            "description": "Shows a preview of the target website if there's a link within the message"
+          },
+          "mentionsEveryOne": {
+            "type": "boolean",
+            "description": "Mentioned everyone when the message send"
+          },
+          "mentioned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Numbers to mention"
+          },
+          "quoted": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Quoted message ID"
+                  }
+                }
+              },
+              "message": {
+                "type": "object",
+                "properties": {
+                  "conversation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["number", "name", "address", "latitude", "longitude"]
+      },
+      "SendLocationResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "locationMessage": {
+                "type": "object",
+                "properties": {
+                  "degreesLatitude": {
+                    "type": "number"
+                  },
+                  "degreesLongitude": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "contextInfo": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "SendStickerRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Number to receive the message (with country code)"
+          },
+          "sticker": {
+            "type": "string",
+            "description": "url or base64"
+          },
+          "delay": {
+            "type": "integer",
+            "description": "Presence time in milliseconds before sending message"
+          },
+          "linkPreview": {
+            "type": "boolean",
+            "description": "Shows a preview of the target website if there's a link within the message"
+          },
+          "mentionsEveryOne": {
+            "type": "boolean",
+            "description": "Mentioned everyone when the message send"
+          },
+          "mentioned": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Numbers to mention"
+          },
+          "quoted": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "message": {
+                "type": "object",
+                "properties": {
+                  "conversation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["number", "sticker"]
+      },
+      "SendStickerResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "stickerMessage": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "mimetype": {
+                    "type": "string"
+                  },
+                  "fileSha256": {
+                    "type": "string"
+                  },
+                  "fileLength": {
+                    "type": "string"
+                  },
+                  "seconds": {
+                    "type": "integer"
+                  },
+                  "ptt": {
+                    "type": "boolean"
+                  },
+                  "mediaKey": {
+                    "type": "string"
+                  },
+                  "fileEncSha256": {
+                    "type": "string"
+                  },
+                  "directPath": {
+                    "type": "string"
+                  },
+                  "mediaKeyTimestamp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "SendReactionRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string",
+                "description": "Chat contact or group remote JID"
+              },
+              "fromMe": {
+                "type": "boolean",
+                "description": "If the message was sent by the instance owner or not"
+              },
+              "id": {
+                "type": "string",
+                "description": "Message ID"
+              }
+            },
+            "required": ["remoteJid", "fromMe", "id"]
+          },
+          "reaction": {
+            "type": "string",
+            "description": "Reaction emoji"
+          }
+        },
+        "required": ["key", "reaction"]
+      },
+      "SendReactionResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {
+              "remoteJid": {
+                "type": "string"
+              },
+              "fromMe": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "reactionMessage": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "object",
+                    "properties": {
+                      "remoteJid": {
+                        "type": "string"
+                      },
+                      "fromMe": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "senderTimestampMs": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "messageTimestamp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
