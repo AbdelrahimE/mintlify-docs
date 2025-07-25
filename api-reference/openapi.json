@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://evo.wabotmaster-cloud.com",
+      "url": "https://{server-url}",
       "variables": {
         "server-url": {
           "default": "evo.wabotmaster-cloud.com",
@@ -25,6 +25,232 @@
     }
   ],
   "paths": {
+    "/instance/connectionState/{instance}": {
+      "get": {
+        "summary": "Connection State",
+        "description": "Get the connection state of an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to get status connect",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionStateResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/restart/{instance}": {
+      "put": {
+        "summary": "Restart Instance",
+        "description": "Restart an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to restart",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionStateResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/logout/{instance}": {
+      "delete": {
+        "summary": "Logout Instance",
+        "description": "Logout an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to logout",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/delete/{instance}": {
+      "delete": {
+        "summary": "Delete Instance",
+        "description": "Delete an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/webhook/set/{instance}": {
+      "post": {
+        "summary": "Set Webhook",
+        "description": "Set webhook configuration for an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetWebhookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetWebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/webhook/find/{instance}": {
+      "get": {
+        "summary": "Find Webhook",
+        "description": "Get webhook configuration for an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindWebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
     "/message/sendText/{instance}": {
       "post": {
         "summary": "Send Text",
@@ -112,158 +338,155 @@
           }
         ]
       }
-    },
-    "/instance/connectionState/{instance}": {
-      "get": {
-        "summary": "Connection State",
-        "description": "Get connection state of an instance",
-        "parameters": [
-          {
-            "name": "instance",
-            "in": "path",
-            "description": "Name of the instance to get status connect",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConnectionStateResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/instance/restart/{instance}": {
-      "put": {
-        "summary": "Restart Instance",
-        "description": "Restart an instance",
-        "parameters": [
-          {
-            "name": "instance",
-            "in": "path",
-            "description": "Name of the instance to restart",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InstanceResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/instance/logout/{instance}": {
-      "delete": {
-        "summary": "Logout Instance",
-        "description": "Logout from an instance",
-        "parameters": [
-          {
-            "name": "instance",
-            "in": "path",
-            "description": "Name of the instance to logout",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LogoutResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/instance/delete/{instance}": {
-      "delete": {
-        "summary": "Delete Instance",
-        "description": "Delete an instance",
-        "parameters": [
-          {
-            "name": "instance",
-            "in": "path",
-            "description": "Name of the instance to delete",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
     }
   },
   "components": {
     "schemas": {
+      "ConnectionStateResponse": {
+        "type": "object",
+        "properties": {
+          "instance": {
+            "type": "object",
+            "properties": {
+              "instanceName": {
+                "type": "string",
+                "description": "Name of the instance"
+              },
+              "state": {
+                "type": "string",
+                "description": "Connection state of the instance (e.g., 'open', 'close')"
+              }
+            }
+          }
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the operation"
+          },
+          "error": {
+            "type": "boolean",
+            "description": "Whether an error occurred"
+          },
+          "response": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Response message"
+              }
+            }
+          }
+        }
+      },
+      "SetWebhookRequest": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "enable webhook to instance"
+          },
+          "url": {
+            "type": "string",
+            "description": "Webhook URL"
+          },
+          "webhookByEvents": {
+            "type": "boolean",
+            "description": "Enables Webhook by events"
+          },
+          "webhookBase64": {
+            "type": "boolean",
+            "description": "Sends files in base64 when available"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "QRCODE_UPDATED",
+                "MESSAGES_SET",
+                "MESSAGES_UPSERT",
+                "MESSAGES_UPDATE",
+                "MESSAGES_DELETE",
+                "SEND_MESSAGE",
+                "CONTACTS_SET",
+                "CONTACTS_UPSERT",
+                "CONTACTS_UPDATE",
+                "PRESENCE_UPDATE",
+                "CHATS_SET",
+                "CHATS_UPSERT",
+                "CHATS_UPDATE",
+                "CHATS_DELETE",
+                "GROUPS_UPSERT",
+                "GROUP_UPDATE",
+                "GROUP_PARTICIPANTS_UPDATE",
+                "CONNECTION_UPDATE",
+                "CALL",
+                "NEW_JWT_TOKEN"
+              ]
+            },
+            "description": "Events to be sent to the Webhook"
+          }
+        },
+        "required": ["enabled", "url", "webhookByEvents", "webhookBase64", "events"]
+      },
+      "SetWebhookResponse": {
+        "type": "object",
+        "properties": {
+          "webhook": {
+            "type": "object",
+            "properties": {
+              "instanceName": {
+                "type": "string",
+                "description": "Name of the instance"
+              },
+              "webhook": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "Webhook URL"
+                  },
+                  "events": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Events configured for the webhook"
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the webhook is enabled"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "FindWebhookResponse": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the webhook is enabled"
+          },
+          "url": {
+            "type": "string",
+            "description": "Webhook URL"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Events configured for the webhook"
+          }
+        }
+      },
       "SendTextRequest": {
         "type": "object",
         "properties": {
@@ -386,56 +609,6 @@
           },
           "messageTimestamp": { "type": "string" },
           "status": { "type": "string" }
-        }
-      },
-      "ConnectionStateResponse": {
-        "type": "object",
-        "properties": {
-          "instance": {
-            "type": "object",
-            "properties": {
-              "instanceName": { "type": "string" },
-              "state": { "type": "string" }
-            }
-          }
-        }
-      },
-      "InstanceResponse": {
-        "type": "object",
-        "properties": {
-          "instance": {
-            "type": "object",
-            "properties": {
-              "instanceName": { "type": "string" },
-              "state": { "type": "string" }
-            }
-          }
-        }
-      },
-      "LogoutResponse": {
-        "type": "object",
-        "properties": {
-          "status": { "type": "string" },
-          "error": { "type": "boolean" },
-          "response": {
-            "type": "object",
-            "properties": {
-              "message": { "type": "string" }
-            }
-          }
-        }
-      },
-      "DeleteResponse": {
-        "type": "object",
-        "properties": {
-          "status": { "type": "string" },
-          "error": { "type": "boolean" },
-          "response": {
-            "type": "object",
-            "properties": {
-              "message": { "type": "string" }
-            }
-          }
         }
       }
     },

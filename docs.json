@@ -34,6 +34,13 @@
             ]
           },
           {
+            "group": "Webhook",
+            "pages": [
+              "api-reference/endpoint/set-webhook",
+              "api-reference/endpoint/find-webhook"
+            ]
+          },
+          {
             "group": "API Reference",
             "pages": [
               "api-reference/endpoint/send-text",
