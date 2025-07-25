@@ -41,7 +41,7 @@
             ]
           },
           {
-            "group": "API Reference",
+            "group": "API Endpoints",
             "pages": [
               "api-reference/endpoint/send-text",
               "api-reference/endpoint/send-media",
