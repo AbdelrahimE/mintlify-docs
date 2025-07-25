@@ -1,0 +1,51 @@
+---
+title: 'Restart Instance'
+api: 'PUT /instance/restart/{instance}'
+---
+
+# Restart Instance
+
+<RequestExample>
+```bash
+curl --request PUT \
+  --url https://evo.wabotmaster-cloud.com/instance/restart/{instance} \
+  --header 'apikey: <api-key>'
+```
+</RequestExample>
+
+<ResponseExample>
+```json
+{
+  "instance": {
+    "instanceName": "teste-docs",
+    "state": "open"
+  }
+}
+```
+</ResponseExample>
+
+## Authorizations
+
+<ParamField header="apikey" type="string" required>
+Your authorization key header
+</ParamField>
+
+## Path Parameters
+
+<ParamField path="instance" type="string" required>
+Name of the instance to restart
+</ParamField>
+
+## Response
+
+<ResponseField name="instance" type="object">
+Instance information
+</ResponseField>
+
+<ResponseField name="instance.instanceName" type="string">
+Name of the instance
+</ResponseField>
+
+<ResponseField name="instance.state" type="string">
+Connection state of the instance
+</ResponseField> 

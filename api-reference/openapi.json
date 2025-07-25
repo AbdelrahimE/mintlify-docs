@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://{server-url}",
+      "url": "https://evo.wabotmaster-cloud.com",
       "variables": {
         "server-url": {
           "default": "evo.wabotmaster-cloud.com",
@@ -104,6 +104,154 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/connectionState/{instance}": {
+      "get": {
+        "summary": "Connection State",
+        "description": "Get connection state of an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to get status connect",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionStateResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/restart/{instance}": {
+      "put": {
+        "summary": "Restart Instance",
+        "description": "Restart an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to restart",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/logout/{instance}": {
+      "delete": {
+        "summary": "Logout Instance",
+        "description": "Logout from an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to logout",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/instance/delete/{instance}": {
+      "delete": {
+        "summary": "Delete Instance",
+        "description": "Delete an instance",
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "description": "Name of the instance to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "security": [
@@ -238,6 +386,56 @@
           },
           "messageTimestamp": { "type": "string" },
           "status": { "type": "string" }
+        }
+      },
+      "ConnectionStateResponse": {
+        "type": "object",
+        "properties": {
+          "instance": {
+            "type": "object",
+            "properties": {
+              "instanceName": { "type": "string" },
+              "state": { "type": "string" }
+            }
+          }
+        }
+      },
+      "InstanceResponse": {
+        "type": "object",
+        "properties": {
+          "instance": {
+            "type": "object",
+            "properties": {
+              "instanceName": { "type": "string" },
+              "state": { "type": "string" }
+            }
+          }
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "error": { "type": "boolean" },
+          "response": {
+            "type": "object",
+            "properties": {
+              "message": { "type": "string" }
+            }
+          }
+        }
+      },
+      "DeleteResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "error": { "type": "boolean" },
+          "response": {
+            "type": "object",
+            "properties": {
+              "message": { "type": "string" }
+            }
+          }
         }
       }
     },

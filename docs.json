@@ -25,7 +25,16 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "API Endpoints",
+            "group": "Instances",
+            "pages": [
+              "api-reference/endpoint/connection-state",
+              "api-reference/endpoint/restart-instance",
+              "api-reference/endpoint/logout-instance",
+              "api-reference/endpoint/delete-instance"
+            ]
+          },
+          {
+            "group": "API Reference",
             "pages": [
               "api-reference/endpoint/send-text",
               "api-reference/endpoint/send-media"
