@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Botifiy Whatsapp API Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#60DE2E",
+    "light": "#70e143",
+    "dark": "#56c829"
   },
   "favicon": "/favicon.svg",
   "navigation": {
